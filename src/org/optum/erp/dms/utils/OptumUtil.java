@@ -15,6 +15,7 @@ import org.compiere.model.MClient;
 import org.compiere.model.MStorageProvider;
 import org.compiere.model.MTable;
 import org.compiere.util.Env;
+import org.optum.erp.search.model.QueryResults;
 import org.optum.erp.search.model.SearchFileRoot;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -81,7 +82,7 @@ public class OptumUtil {
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 			Documents document = mapper.readValue(responseHttp, Documents.class);
-			return document.getDocument().get(0).getUuid();
+			return document.getUuid();
 		}
 		return existingUUID;
 	}
@@ -173,11 +174,12 @@ public class OptumUtil {
 			  
 			 	ObjectMapper mapper = new ObjectMapper();
 			 	mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-				SearchFileRoot root = mapper.readValue(response.toString(), SearchFileRoot.class);
-				if(root != null && root.getQueryResults() != null && root.getQueryResults().getQueryResult() != null) {
-					for(int i=0;i<root.getQueryResults().getQueryResult().size();i++) {
-						if((path + "/" + fileName).toUpperCase().equals(root.getQueryResults().getQueryResult().get(i).getDocument().getPath().toUpperCase())) {
-							return root.getQueryResults().getQueryResult().get(i).getDocument().getUuid();
+			 	QueryResults root = mapper.readValue(response.toString(), QueryResults.class);
+				//if(root != null && root.getQueryResults() != null && root.getQueryResults().getQueryResult() != null) {
+			 	if(root != null  && root.getQueryResult() != null) {
+					for(int i=0;i<root.getQueryResult().size();i++) {
+						if((path + "/" + fileName).toUpperCase().equals(root.getQueryResult().get(i).getNode().getPath().toUpperCase())) {
+							return root.getQueryResult().get(i).getNode().getUuid();
 						}
 					}
 				}
