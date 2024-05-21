@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.optum.erp.dms.model.AttachmentOpenKM">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" enabled="true" immediate="false" name="org.optum.erp.dms.model.AttachmentOpenKM">
    <implementation class="org.optum.erp.dms.model.AttachmentOpenKM"/>
    <service>
       <provide interface="org.compiere.model.IAttachmentStore"/>
