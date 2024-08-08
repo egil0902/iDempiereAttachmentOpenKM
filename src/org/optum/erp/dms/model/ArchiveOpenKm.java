@@ -10,7 +10,6 @@ import org.compiere.model.IArchiveStore;
 import org.compiere.model.MArchive;
 import org.compiere.model.MStorageProvider;
 import org.compiere.util.CLogger;
-import org.compiere.util.Trx;
 import org.compiere.util.Util;
 import org.optum.erp.dms.utils.DMSConfig;
 import org.optum.erp.dms.utils.OptumUtil;

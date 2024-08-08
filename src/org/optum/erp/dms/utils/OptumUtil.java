@@ -150,7 +150,7 @@ public class OptumUtil {
 	 * @param encoding the encoding
 	 * @return the existing UUID
 	 */
-	private String getExistingUUID(String fileName, String url, String path, String encoding) {
+	public static String getExistingUUID(String fileName, String url, String path, String encoding) {
 		
 		URL obj;
 		try {
